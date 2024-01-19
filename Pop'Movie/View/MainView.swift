@@ -16,9 +16,9 @@ struct MainView: View {
     var body: some View {
         
         TabView {
-            HomeView().tabItem {
+            MovieByGenreView(genreId: 0, title: "Tendances").tabItem {
                 Image(systemName: "movieclapper.fill")
-                Text("Accueil")
+                Text("Tendances")
             }
             
             GenresView().tabItem {

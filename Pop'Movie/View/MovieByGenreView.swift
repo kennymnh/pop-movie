@@ -7,10 +7,13 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct MovieByGenreView: View {
     // MARK: PROPERTIES
-    @StateObject var genreModel = GenresModel()
-    @StateObject var partialMovieModel = PartialMoviesModel()
+    let genreId: Int
+    let title: String
+    
+    // @StateObject private var genreModel = GenresModel()
+    @StateObject private var partialMovieModel = PartialMoviesModel()
     
     // Track if we are currently loading more movies to prevent multiple requests.
     @State private var isLoadingMore = false
@@ -22,11 +25,11 @@ struct HomeView: View {
             
             ScrollViewReader { scrollViewProxy in
                 VStack {
-                    Text("Tendances")
+                    Text(title)
                         .font(.largeTitle.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
-                        .padding(.top, 80)
+                        .padding(.top, 100)
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 30) {
                         
@@ -85,8 +88,8 @@ struct HomeView: View {
         }
         .ignoresSafeArea(edges: .top)
         .task {
-            await genreModel.fetchData()
-            await partialMovieModel.fetchData()
+            // await genreModel.fetchData()
+            await partialMovieModel.fetchData(genre: genreId)
         }
     }
 }
@@ -94,5 +97,5 @@ struct HomeView: View {
 
 // MARK: PREVIEW
 #Preview {
-    HomeView()
+    MovieByGenreView(genreId: 0, title: "Preview")
 }

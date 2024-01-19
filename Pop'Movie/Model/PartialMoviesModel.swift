@@ -3,13 +3,13 @@ import Foundation
 class PartialMoviesModel: ObservableObject {
     @Published var partialMovies = [PartialMovie]()
     
-    func fetchData(page: Int = 1, genre: Int? = nil) async {
+    func fetchData(page: Int = 1, genre: Int = 0) async {
         let headers = [
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjRhNDU0ODRjNGE4MDAyMmMyNWQyODBhNDc0MTQzOSIsInN1YiI6IjY1YTdlODc3NTFjMDFmMDEyYjYwYzI0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m0tbhORYqDObIQi1uABFmBipAMpcoqsJL9zc0gVQhQQ"
         ]
         
-        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&page=\(page)&sort_by=popularity.desc" + (genre == nil ? "" : "?with_genres=\(genre)")) else {
+        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&page=\(page)&sort_by=popularity.desc" + (genre == 0 ? "" : "&with_genres=\(genre)")) else {
             print("Invalid URL")
             return
         }
