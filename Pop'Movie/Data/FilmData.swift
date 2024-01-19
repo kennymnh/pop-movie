@@ -22,6 +22,7 @@ struct Film: Codable, Identifiable {
     let budget: Int
     let revenue: Int
     let genres: [FilmGenre]
+    let runtime: Int
     
     struct FilmGenre : Codable {
         let id: Int
@@ -30,7 +31,7 @@ struct Film: Codable, Identifiable {
 }
 
 extension Film {
-    static let previewFilm: Film = Film(id:13, original_language: "en", original_title: "Forrest Gump", tagline: "Le monde ne sera plus jamais le même quand vous l’aurez vu avec les yeux de Forrest Gump.", overview: "Durant trois décennies particulièrement agitées, Forrest Gump vit une série d'aventures le propulsant de l'état de handicapé physique à celui de star du football, de héros du Vietnam au roi de la crevette, des honneurs de la Maison Blanche au bonheur d'une grande histoire d'amour. Forrest est le symbole d'une époque, un candide dans une Amérique qui a perdu son innocence. Son cœur dépasse les limites de son QI…", popularity: 84.609, poster_path: "forrest", release_date: "1994-06-23", title: "Forest Gump", vote_average: 8.477, vote_count: 26018, budget:55000000, revenue: 677387716,genres: [(FilmGenre(id: 35, name: "Comedie"))])
+    static let previewFilm: Film = Film(id:13, original_language: "en", original_title: "Forrest Gump", tagline: "Le monde ne sera plus jamais le même quand vous l’aurez vu avec les yeux de Forrest Gump.", overview: "Durant trois décennies particulièrement agitées, Forrest Gump vit une série d'aventures le propulsant de l'état de handicapé physique à celui de star du football, de héros du Vietnam au roi de la crevette, des honneurs de la Maison Blanche au bonheur d'une grande histoire d'amour. Forrest est le symbole d'une époque, un candide dans une Amérique qui a perdu son innocence. Son cœur dépasse les limites de son QI…", popularity: 84.609, poster_path: "forrest", release_date: "1994-06-23", title: "Forest Gump", vote_average: 8.477, vote_count: 26018, budget:55000000, revenue: 677387716,genres: [(FilmGenre(id: 35, name: "Comedie"))], runtime: 120)
 }
 
 //{

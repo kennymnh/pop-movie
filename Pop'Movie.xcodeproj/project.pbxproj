@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5A23A2142B59340F00CCADEB /* FilmDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23A2132B59340F00CCADEB /* FilmDetailsView.swift */; };
 		5A23A2162B59349800CCADEB /* FilmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23A2152B59349800CCADEB /* FilmData.swift */; };
-		5A3CD0B92B5965B900BD2493 /* FilmDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3CD0B82B5965B900BD2493 /* FilmDetailsModel.swift */; };
 		5A614A9B2B592F6C003F6983 /* Pop_MovieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A614A9A2B592F6C003F6983 /* Pop_MovieApp.swift */; };
 		5A614A9D2B592F6C003F6983 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A614A9C2B592F6C003F6983 /* ContentView.swift */; };
 		5A614A9F2B592F6D003F6983 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A614A9E2B592F6D003F6983 /* Assets.xcassets */; };
@@ -39,7 +38,6 @@
 /* Begin PBXFileReference section */
 		5A23A2132B59340F00CCADEB /* FilmDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsView.swift; sourceTree = "<group>"; };
 		5A23A2152B59349800CCADEB /* FilmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmData.swift; sourceTree = "<group>"; };
-		5A3CD0B82B5965B900BD2493 /* FilmDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsModel.swift; sourceTree = "<group>"; };
 		5A614A972B592F6C003F6983 /* Pop'Movie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pop'Movie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A614A9A2B592F6C003F6983 /* Pop_MovieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pop_MovieApp.swift; sourceTree = "<group>"; };
 		5A614A9C2B592F6C003F6983 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 		5A23A2112B5933F200CCADEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5A3CD0B82B5965B900BD2493 /* FilmDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 			files = (
 				5A614A9D2B592F6C003F6983 /* ContentView.swift in Sources */,
 				5A23A2142B59340F00CCADEB /* FilmDetailsView.swift in Sources */,
-				5A3CD0B92B5965B900BD2493 /* FilmDetailsModel.swift in Sources */,
 				5A614A9B2B592F6C003F6983 /* Pop_MovieApp.swift in Sources */,
 				5A23A2162B59349800CCADEB /* FilmData.swift in Sources */,
 			);
