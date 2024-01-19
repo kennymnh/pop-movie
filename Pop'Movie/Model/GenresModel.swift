@@ -1,7 +1,7 @@
 import Foundation
 
-class PartialMovieModel: ObservableObject {
-    @Published var partialMovies = [PartialMovie]()
+class GenresModel: ObservableObject {
+    @Published var genres = [Genre]()
     
     func fetchData() async {
         let headers = [
@@ -9,7 +9,7 @@ class PartialMovieModel: ObservableObject {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjRhNDU0ODRjNGE4MDAyMmMyNWQyODBhNDc0MTQzOSIsInN1YiI6IjY1YTdlODc3NTFjMDFmMDEyYjYwYzI0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m0tbhORYqDObIQi1uABFmBipAMpcoqsJL9zc0gVQhQQ"
         ]
         
-        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&page=1&sort_by=popularity.desc") else {
+        guard let url = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=fr") else {
             print("Invalid URL")
             return
         }
@@ -24,17 +24,16 @@ class PartialMovieModel: ObservableObject {
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 
                 if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let results = json["results"] as? [[String: Any]] {
+                   let results = json["genres"] as? [[String: Any]] {
                     
                     for result in results {
                         if let id = result["id"] as? Int,
-                            let title = result["title"] as? String,
-                            let overview = result["overview"] as? String,
-                            let releaseDate = result["release_date"] as? String,
-                            let posterPath = result["poster_path"] as? String {
+                            let name = result["name"] as? String {
                             
-                            let partialMovie = PartialMovie(id: id, title: title, overview: overview, release_date: releaseDate, poster_path: posterPath)
-                            self.partialMovies.append(partialMovie)
+                            let genre = Genre(id: id, name: name)
+                            self.genres.append(genre)
+                            
+                            print(genre)
                         }
                     }
                 }

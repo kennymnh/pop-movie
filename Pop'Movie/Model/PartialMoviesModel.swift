@@ -1,15 +1,15 @@
 import Foundation
 
-class GenreModel: ObservableObject {
-    @Published var genres = [Genre]()
+class PartialMoviesModel: ObservableObject {
+    @Published var partialMovies = [PartialMovie]()
     
-    func fetchData() async {
+    func fetchData(page: Int = 1, genre: Int? = nil) async {
         let headers = [
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjRhNDU0ODRjNGE4MDAyMmMyNWQyODBhNDc0MTQzOSIsInN1YiI6IjY1YTdlODc3NTFjMDFmMDEyYjYwYzI0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m0tbhORYqDObIQi1uABFmBipAMpcoqsJL9zc0gVQhQQ"
         ]
         
-        guard let url = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=fr") else {
+        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&page=\(page)&sort_by=popularity.desc" + (genre == nil ? "" : "?with_genres=\(genre)")) else {
             print("Invalid URL")
             return
         }
@@ -24,16 +24,17 @@ class GenreModel: ObservableObject {
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 
                 if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let results = json["genres"] as? [[String: Any]] {
+                   let results = json["results"] as? [[String: Any]] {
                     
                     for result in results {
                         if let id = result["id"] as? Int,
-                            let name = result["name"] as? String {
+                            let title = result["title"] as? String,
+                            let overview = result["overview"] as? String,
+                            let releaseDate = result["release_date"] as? String,
+                            let posterPath = result["poster_path"] as? String {
                             
-                            let genre = Genre(id: id, name: name)
-                            self.genres.append(genre)
-                            
-                            print(genre)
+                            let partialMovie = PartialMovie(id: id, title: title, overview: overview, release_date: releaseDate, poster_path: posterPath)
+                            self.partialMovies.append(partialMovie)
                         }
                     }
                 }

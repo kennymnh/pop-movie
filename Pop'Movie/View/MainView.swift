@@ -17,13 +17,18 @@ struct MainView: View {
         
         TabView {
             HomeView().tabItem {
-                Image(systemName: "phone.fill")
-                Text("a")
+                Image(systemName: "movieclapper.fill")
+                Text("Accueil")
             }
             
-            Text("world").tabItem {
-                Image(systemName: "phone.fill")
-                Text("b")
+            GenresView().tabItem {
+                Image(systemName: "list.dash")
+                Text("Catégories")
+            }
+            
+            Text("Recherche").tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("Recherche")
             }
         }
         .background(ignoresSafeAreaEdges: .all)
