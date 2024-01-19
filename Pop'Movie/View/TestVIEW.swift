@@ -1,13 +1,13 @@
 //
-//  HomeView.swift
+//  TestVIEW.swift
 //  Pop'Movie
 //
-//  Created by SDV Bordeaux on 18/01/2024.
+//  Created by SDV Bordeaux on 19/01/2024.
 //
 
 import SwiftUI
 
-struct HomeView: View {
+struct TestVIEW: View {
     // MARK: PROPERTIES
     @StateObject var genreModel = GenresModel()
     @StateObject var partialMovieModel = PartialMoviesModel()
@@ -91,8 +91,6 @@ struct HomeView: View {
     }
 }
 
-
-// MARK: PREVIEW
 #Preview {
-    HomeView()
+    TestVIEW()
 }

@@ -18,7 +18,7 @@ struct GenresView: View {
             VStack {
                 TextField("Rechercher une catégorie", text: $searchText)
                     .padding(7)
-                    .background(Color(.systemGray6))
+//                    .background(Color(.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal)
                 
