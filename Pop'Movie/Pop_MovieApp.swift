@@ -11,7 +11,7 @@ import SwiftUI
 struct Pop_MovieApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
