@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Pop'Movie
-//
-//  Created by SDV Bordeaux on 18/01/2024.
-//
-
 import SwiftUI
 
 struct MainView: View {

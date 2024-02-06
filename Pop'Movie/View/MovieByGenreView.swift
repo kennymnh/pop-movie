@@ -1,10 +1,3 @@
-//
-//  HomeView.swift
-//  Pop'Movie
-//
-//  Created by SDV Bordeaux on 18/01/2024.
-//
-
 import SwiftUI
 
 struct MovieByGenreView: View {
@@ -18,6 +11,8 @@ struct MovieByGenreView: View {
     // Track if we are currently loading more movies to prevent multiple requests.
     @State private var isLoadingMore = false
     @State private var currentPage = 1
+    
+    @State private var isMoviePresented = false;
     
     // MARK: BODY
     var body: some View {
@@ -35,6 +30,7 @@ struct MovieByGenreView: View {
                         
                         ForEach(partialMovieModel.partialMovies) { partialMovie in
                             
+                            // MARK: MOVIE CARD
                             VStack(alignment: .leading) {
                                 AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500" + partialMovie.poster_path)) { image in
                                     image
@@ -59,6 +55,9 @@ struct MovieByGenreView: View {
                                     .padding(.leading, 3)
                             }
                             .padding(.horizontal, 8)
+                            .onTapGesture {
+                                isMoviePresented.toggle()
+                            }
                             
                             .onAppear {
                                 // When the last movie appears, load more movies
@@ -90,6 +89,15 @@ struct MovieByGenreView: View {
         .task {
             // await genreModel.fetchData()
             await partialMovieModel.fetchData(genre: genreId)
+        }
+        
+        // MARK: SHEET
+        .sheet(isPresented: $isMoviePresented) {
+            Text("This app was brought to you by Hacking with Swift")
+                .presentationDetents([.medium, .large])
+                .task {
+                    print("tasked")
+                }
         }
     }
 }

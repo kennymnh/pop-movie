@@ -3,7 +3,6 @@ import SwiftUI
 struct GenresView: View {
     // MARK: PROPERTIES
     @StateObject var genreModel = GenresModel()
-    @State private var searchText = ""
     
     // MARK: BODY
     var body: some View {
