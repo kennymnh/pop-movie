@@ -6,7 +6,7 @@ struct Movie: Codable, Identifiable {
     // MARK: MAIN INFORMATION
     
     let title: String
-    let description: String
+    let overview: String
     let releaseDate: Date
     let status: String
     

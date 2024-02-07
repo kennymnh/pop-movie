@@ -82,7 +82,7 @@ struct MovieByGenreView: View {
                     
                 }
                 .frame(width: UIScreen.main.bounds.width)
-
+                
             }
         }
         .ignoresSafeArea(edges: .top)
@@ -93,7 +93,7 @@ struct MovieByGenreView: View {
         
         // MARK: SHEET
         .sheet(isPresented: $isMoviePresented) {
-            Text("This app was brought to you by Hacking with Swift")
+            MovieSheetView(id: 69)
                 .presentationDetents([.medium, .large])
                 .task {
                     print("tasked")
