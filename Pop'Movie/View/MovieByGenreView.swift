@@ -4,7 +4,7 @@ struct MovieByGenreView: View {
     // MARK: PROPERTIES
     let genreId: Int
     let title: String
-    
+    	
     // @StateObject private var genreModel = GenresModel()
     @StateObject private var partialMovieModel = PartialMoviesModel()
     
@@ -12,7 +12,9 @@ struct MovieByGenreView: View {
     @State private var isLoadingMore = false
     @State private var currentPage = 1
     
-    @State private var isMoviePresented = false;
+    @State private var isMoviePresented = false
+    @State private var selectedPartialMovie: PartialMovie?
+    
     
     // MARK: BODY
     var body: some View {
@@ -56,6 +58,7 @@ struct MovieByGenreView: View {
                             }
                             .padding(.horizontal, 8)
                             .onTapGesture {
+                                selectedPartialMovie = partialMovie
                                 isMoviePresented.toggle()
                             }
                             
@@ -87,17 +90,15 @@ struct MovieByGenreView: View {
         }
         .ignoresSafeArea(edges: .top)
         .task {
-            // await genreModel.fetchData()
             await partialMovieModel.fetchData(genre: genreId)
         }
         
         // MARK: SHEET
         .sheet(isPresented: $isMoviePresented) {
-            MovieSheetView(id: 69)
-                .presentationDetents([.medium, .large])
-                .task {
-                    print("tasked")
-                }
+            if let selectedPartialMovie = selectedPartialMovie {
+                MovieSheetView(partialMovie: selectedPartialMovie)
+                    .presentationDetents([.medium, .large])
+            }
         }
     }
 }

@@ -2,13 +2,13 @@ import SwiftUI
 
 struct MovieSheetView: View {
     // MARK: PROPERTIES
-    let id: Int
+    @State var partialMovie: PartialMovie
     
     // MARK: BODY
     var body: some View {
         VStack {
             HStack {
-                AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg")) { image in
+                AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500" + partialMovie.poster_path)) { image in
                     image
                         .resizable()
                         .aspectRatio(2/3, contentMode: .fit)
@@ -26,13 +26,16 @@ struct MovieSheetView: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text("Avatar: The Way of the Water")
+                    Text(partialMovie.title)
                         .font(.title.bold())
                         .padding(.bottom)
                     
-                    Text("Sorti le 14/12/2022")
-                        .font(.caption)
+                    Text("Sorti le " + partialMovie.release_date)
+                        .font(.headline)
                         .opacity(0.6)
+                        .padding(.bottom, 8)
+                    
+                    RatingComponentView(rating: partialMovie.vote_average / 2, ratingMax: 5)
                     
                     Spacer()
                 }
@@ -43,10 +46,10 @@ struct MovieSheetView: View {
             .frame(height: 150)
             .padding(.bottom)
             
-            Text("Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.")
+            Text(partialMovie.overview)
                 .padding(.bottom)
             
-            NavigationLink(destination: RatingComponentView()) {
+            NavigationLink(destination: RatingComponentView(rating: 4.2, ratingMax: 5)) {
                 Text("Plus d'informations")
                     .font(.callout.bold())
                     .frame(minWidth: UIScreen.main.bounds.width - 90)
@@ -63,6 +66,6 @@ struct MovieSheetView: View {
 }
 
 // MARK: PREVIEW
-#Preview {
-    MovieSheetView(id: 69)
-}
+// #Preview {
+//     MovieSheetView(id: 69)
+// }

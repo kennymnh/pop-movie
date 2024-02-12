@@ -1,21 +1,42 @@
-//
-//  RatingComponentView.swift
-//  Pop'Movie
-//
-//  Created by m1 on 07/02/2024.
-//
-
 import SwiftUI
 
 struct RatingComponentView: View {
-    let rating: Float = 4.42
-    let ratingMax: Float = 5
+    let rating: Float
+    let ratingMax: Int
+    
+    init(rating: Float, ratingMax: Int) {
+        self.rating = rating
+        self.ratingMax = ratingMax
+    }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            ForEach(1...ratingMax, id: \.self) { index in
+                Image(systemName: self.imageName(for: index))
+                    .foregroundColor(self.starColor(for: index))
+            }
+        }
+    }
+    
+    private func imageName(for index: Int) -> String {
+        if Float(index) <= rating {
+            return "star.fill"
+        } else if Float(index - 1) < rating && rating < Float(index) {
+            return "star.leadinghalf.fill"
+        } else {
+            return "star"
+        }
+    }
+    
+    private func starColor(for index: Int) -> Color {
+        if Float(index - 1) <= rating {
+            return .yellow
+        } else {
+            return .gray
+        }
     }
 }
 
 #Preview {
-    RatingComponentView()
+    RatingComponentView(rating: 2.5, ratingMax: 5)
 }

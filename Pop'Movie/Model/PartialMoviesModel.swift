@@ -31,10 +31,13 @@ class PartialMoviesModel: ObservableObject {
                             let title = result["title"] as? String,
                             let overview = result["overview"] as? String,
                             let releaseDate = result["release_date"] as? String,
-                            let posterPath = result["poster_path"] as? String {
+                            let posterPath = result["poster_path"] as? String,
+                            let voteAverage = result["vote_average"] as? Double {
                             
-                            let partialMovie = PartialMovie(id: id, title: title, overview: overview, release_date: releaseDate, poster_path: posterPath)
+                            let partialMovie = PartialMovie(id: id, title: title, overview: overview, release_date: releaseDate, poster_path: posterPath, vote_average: Float(voteAverage))
                             self.partialMovies.append(partialMovie)
+                            
+                            print(partialMovie)
                         }
                     }
                 }
