@@ -12,6 +12,7 @@ struct MovieSheetView: View {
         NavigationStack {
             VStack {
                 HStack {
+                    // MARK: Image poster
                     AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500" + partialMovie.poster_path)) { image in
                         image
                             .resizable()
@@ -29,6 +30,7 @@ struct MovieSheetView: View {
                         }
                     }
                     
+                    // MARK: Title, release and score
                     VStack(alignment: .leading) {
                         Text(partialMovie.title)
                             .font(.title.bold())
@@ -53,6 +55,7 @@ struct MovieSheetView: View {
                 Text(partialMovie.overview)
                     .padding(.bottom)
                 
+                // MARK: More info button
                 Button(action: {
                     // Call the closure when the button is tapped
                     dismissAndShowMovieInfo(partialMovie.id)
