@@ -73,7 +73,10 @@ struct MovieByGenreView: View {
             await partialMovieModel.fetchData(genre: genreId)
         }
         .sheet(item: $selectedPartialMovie) { partialMovie in
-            MovieSheetView(partialMovie: partialMovie)
+            MovieSheetView(partialMovie: partialMovie) { movieId in
+                selectedPartialMovie = nil
+                print("i have been dismissed by a click, and the movie id is \(movieId)")
+            }
                 .presentationDetents([.medium, .large])
         }
     }

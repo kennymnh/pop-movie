@@ -36,8 +36,6 @@ class PartialMoviesModel: ObservableObject {
                             
                             let partialMovie = PartialMovie(id: id, title: title, overview: overview, release_date: releaseDate, poster_path: posterPath, vote_average: Float(voteAverage))
                             self.partialMovies.append(partialMovie)
-                            
-                            print(partialMovie)
                         }
                     }
                 }
