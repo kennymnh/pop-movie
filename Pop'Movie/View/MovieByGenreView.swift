@@ -10,6 +10,8 @@ struct MovieByGenreView: View {
     @State private var currentPage = 1
     
     @State private var selectedPartialMovie: PartialMovie? = nil
+    @State private var navigateToMovieView = false
+    @State private var navigateToMovieId = 0
     
     var body: some View {
         ScrollView {
@@ -75,9 +77,13 @@ struct MovieByGenreView: View {
         .sheet(item: $selectedPartialMovie) { partialMovie in
             MovieSheetView(partialMovie: partialMovie) { movieId in
                 selectedPartialMovie = nil
-                print("i have been dismissed by a click, and the movie id is \(movieId)")
+                navigateToMovieId = movieId
+                navigateToMovieView = true
             }
                 .presentationDetents([.medium, .large])
+        }
+        .background {
+            NavigationLink(destination: MovieView(movieId: navigateToMovieId), isActive: $navigateToMovieView) { EmptyView() }
         }
     }
 }

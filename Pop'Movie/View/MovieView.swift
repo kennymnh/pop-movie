@@ -1,11 +1,16 @@
 import SwiftUI
 
 struct MovieView: View {
+    let movieId: Int
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Hello, World!")
+            Text("Movie Id is \(movieId)")
+        }
     }
 }
 
 #Preview {
-    MovieView()
+    MovieView(movieId: 76600)
 }
