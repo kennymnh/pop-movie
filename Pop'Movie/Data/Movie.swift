@@ -7,7 +7,7 @@ struct Movie: Codable, Identifiable {
     
     let title: String
     let overview: String
-    let releaseDate: Date
+    let releaseDate: String
     let status: String
     
     let popularity: Float
@@ -26,4 +26,9 @@ struct Movie: Codable, Identifiable {
     let productionCompanies: [String]
     let spokenLanguages: [String]
     let budget: Int
+}
+
+
+extension Movie {
+    static let previewMovie: Movie = Movie(id: 0, title: "...", overview: "", releaseDate: "", status: "", popularity: 0, voteAverage: 10, voteCount: 0, adult: false, genres: [], backdropPath: "", posterPath: "", countries: [], productionCompanies: [], spokenLanguages: [], budget: 0)
 }
