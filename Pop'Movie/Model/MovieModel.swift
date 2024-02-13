@@ -10,7 +10,7 @@ class MovieModel: ObservableObject {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjRhNDU0ODRjNGE4MDAyMmMyNWQyODBhNDc0MTQzOSIsInN1YiI6IjY1YTdlODc3NTFjMDFmMDEyYjYwYzI0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m0tbhORYqDObIQi1uABFmBipAMpcoqsJL9zc0gVQhQQ"
         ]
         
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)") else {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?language=fr-FR") else {
             print("Invalid URL")
             return
         }
