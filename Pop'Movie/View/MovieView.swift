@@ -37,7 +37,7 @@ struct MovieView: View {
                 Text(movieModel.movie.title)
                     .font(.largeTitle.bold())
                 
-                Text("1h 28m  |  28 janvier 2023")
+                Text("\(movieModel.movie.getFormattedRuntime())  |  \(movieModel.movie.getFormattedDate())")
                     .opacity(0.4)
                     .padding(.top, 8)
                 
@@ -90,7 +90,8 @@ struct MovieView: View {
         }
         .task {
             print("task triggered")
-            await movieModel.fetchData(movieId: movieId)
+            await movieModel.fetchMovieData(movieId: movieId)
+            await movieModel.fetchCastData(movieId: movieId)
         }
     }
 }
@@ -109,7 +110,9 @@ struct ActorCard: View {
                         .foregroundColor(.gray)
                         .opacity(0.1)
                     
-                    ProgressView()
+                    if (actor.profilePicture != nil && actor.profilePicture != "") {
+                        ProgressView()
+                    }
                 }
             }
             .aspectRatio(2/3, contentMode: .fit)
@@ -117,11 +120,13 @@ struct ActorCard: View {
             
             VStack(alignment: .leading) {
                 Text(actor.name)
-                    .font(.headline.bold())
+                    .lineLimit(1)
+                    .font(.subheadline.bold())
                 
                 Text(actor.character ?? "")
+                    .lineLimit(1)
                     .font(.subheadline)
-                    .foregroundStyle(.opacity(0.4))
+                    .foregroundStyle(.opacity(0.6))
             }
             .padding(.leading, 3)
         }

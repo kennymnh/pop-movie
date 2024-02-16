@@ -5,7 +5,7 @@ struct CastPerson: Codable, Identifiable {
     
     let name: String
     
-    let department: String?
+    let department: String
     let character: String?
     
     let profilePicture: String?
@@ -13,6 +13,6 @@ struct CastPerson: Codable, Identifiable {
 
 
 extension CastPerson {
-    static let previewActor: CastPerson = CastPerson(id: 0, name: "", department: nil, character: "", profilePicture: "")
+    static let previewActor: CastPerson = CastPerson(id: 0, name: "", department: "", character: "", profilePicture: "")
     static let previewNonActor: CastPerson = CastPerson(id: 0, name: "", department: "", character: nil, profilePicture: "")
 }
