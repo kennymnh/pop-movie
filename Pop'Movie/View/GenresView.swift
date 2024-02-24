@@ -3,6 +3,8 @@ import SwiftUI
 struct GenresView: View {
     // MARK: PROPERTIES
     @StateObject var genreModel = GenresModel()
+    @State private var firstLoad = true
+    
     
     // MARK: BODY
     var body: some View {
@@ -27,7 +29,10 @@ struct GenresView: View {
             .navigationTitle("Catégories")
         }
         .task {
-            await genreModel.fetchData()
+            if (firstLoad) {
+                await genreModel.fetchData()
+                firstLoad = false
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ struct MovieByGenreView: View {
     let title: String
     
     @StateObject private var partialMovieModel = PartialMoviesModel()
+    @State private var firstLoad = true
     @State private var isLoadingMore = false
     @State private var currentPage = 1
     
@@ -72,7 +73,10 @@ struct MovieByGenreView: View {
         }
         .ignoresSafeArea(edges: .top)
         .task {
-            await partialMovieModel.fetchData(genre: genreId)
+            if (firstLoad) {
+                await partialMovieModel.fetchData(genre: genreId)
+                firstLoad = false
+            }
         }
         .sheet(item: $selectedPartialMovie) { partialMovie in
             MovieSheetView(partialMovie: partialMovie) { movieId in
