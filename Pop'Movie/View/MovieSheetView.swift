@@ -55,6 +55,8 @@ struct MovieSheetView: View {
                 Text(partialMovie.overview)
                     .padding(.bottom)
                 
+                Spacer()
+                
                 // MARK: More info button
                 Button(action: {
                     // Call the closure when the button is tapped
@@ -68,8 +70,6 @@ struct MovieSheetView: View {
                 .foregroundColor(.white)
                 .background(Color.blue.opacity(0.9))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                Spacer()
             }
             .padding(30)
         }
