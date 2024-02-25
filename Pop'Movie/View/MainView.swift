@@ -19,7 +19,7 @@ struct MainView: View {
                     Text("Catégories")
                 }
                 
-                Text("Recherche").tabItem {
+                SearchView().tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Recherche")
                 }

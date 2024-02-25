@@ -9,19 +9,26 @@ struct GenresView: View {
     // MARK: BODY
     var body: some View {
         VStack {
-            Text("Catégories")
-                .font(.largeTitle.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-                .padding(.top, 40)
+//            Text("Catégories")
+//                .font(.largeTitle.bold())
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                .padding(.horizontal)
+//                .padding(.top, 40)
             
             List {
+                HStack {
+                    Text("Catégories")
+                        .font(.largeTitle.bold())
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 8)
+                }
+                
                 ForEach(genreModel.genres) { genre in
                     NavigationLink(destination: MovieByGenreView(genreId: genre.id, title: genre.name)) {
                         HStack {
                             Text(genre.name)
-                                .font(.title2.bold())
-                                .padding(.vertical)
+                                .font(.title3.bold())
+                                .padding(.vertical, 8)
                         }
                     }
                 }
