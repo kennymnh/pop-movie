@@ -6,6 +6,7 @@ struct MovieView: View {
     let genres = ["Science-fiction", "Animation"];
     
     @StateObject var movieModel = MovieModel()
+    @State private var selectedActor: CastPerson? = nil
     
     // MARK: BODY
     var body: some View {
@@ -84,12 +85,19 @@ struct MovieView: View {
                 HStack(spacing: 0) {
                     ForEach(movieModel.actors) { actor in
                         ActorCard(actor: actor)
+                            .onTapGesture {
+                                selectedActor = actor
+                            }
                     }
                 }
             }
         }
+        .sheet(item: $selectedActor) { actor in
+            ActorSheetView(actor: actor)
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.height(200)])
+        }
         .task {
-            print("task triggered")
             await movieModel.fetchMovieData(movieId: movieId)
             await movieModel.fetchCastData(movieId: movieId)
         }
