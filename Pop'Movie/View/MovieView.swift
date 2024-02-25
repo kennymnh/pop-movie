@@ -64,9 +64,17 @@ struct MovieView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 48)
                 
-                Text(movieModel.movie.overview)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top)
+                if (movieModel.movie.overview == "") {
+                    Text("Le synopsis pour ce film n'est pas disponible.")
+                        .italic()
+                        .foregroundStyle(.opacity(0.5))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top)
+                } else {
+                    Text(movieModel.movie.overview)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top)
+                }
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 12)
