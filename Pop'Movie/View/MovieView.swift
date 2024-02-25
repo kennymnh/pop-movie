@@ -36,6 +36,7 @@ struct MovieView: View {
             
             VStack(spacing: 0) {
                 Text(movieModel.movie.title)
+                    .multilineTextAlignment(.center)
                     .font(.largeTitle.bold())
                 
                 Text("\(movieModel.movie.getFormattedRuntime())  |  \(movieModel.movie.getFormattedDate())")
