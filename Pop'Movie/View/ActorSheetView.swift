@@ -20,7 +20,7 @@ struct ActorSheetView: View {
             }
             
             VStack {
-                Text("Role")
+                Text("Rôle" + ((actor.character ?? "").contains("/") ? "s" : ""))
                     .font(.headline.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
