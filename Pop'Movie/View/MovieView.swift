@@ -53,6 +53,8 @@ struct MovieView: View {
                 }
                 .padding(.vertical)
                 
+                // MARK: TODO: Genres listing
+                
                 RatingComponentView(rating: movieModel.movie.voteAverage / 2, ratingMax: 5)
                     .padding(.top, 8)
                 
