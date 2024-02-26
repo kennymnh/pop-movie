@@ -9,7 +9,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                MovieByGenreView(genreId: 0, title: "Tendances").tabItem {
+                MovieByGenreView(genreId: 0, title: "Découverte").tabItem {
                     Image(systemName: "sparkles.tv")
                     Text("Découverte")
                 }

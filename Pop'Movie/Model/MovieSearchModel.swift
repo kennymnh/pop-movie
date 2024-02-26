@@ -1,7 +1,7 @@
 import Foundation
 
-class MovieListViewModel: ObservableObject {
-    @Published var resultPartialMovies: [PartialMovie] = []
+class MovieSearchModel: ObservableObject {
+    @Published var results: [PartialMovie] = []
     
     func fetchData(query: String, page: Int = 1) async {
         let headers = [
@@ -37,6 +37,8 @@ class MovieListViewModel: ObservableObject {
                 if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                    let results = json["results"] as? [[String: Any]] {
                     
+                    self.results.removeAll()
+                    
                     for result in results {
                         if let id = result["id"] as? Int,
                            let title = result["title"] as? String,
@@ -46,7 +48,7 @@ class MovieListViewModel: ObservableObject {
                            let voteAverage = result["vote_average"] as? Double {
                             
                             let partialMovie = PartialMovie(id: id, title: title, overview: overview, release_date: releaseDate, poster_path: posterPath, vote_average: Float(voteAverage))
-                            self.resultPartialMovies.append(partialMovie)
+                            self.results.append(partialMovie)
                         }
                     }
                 }
