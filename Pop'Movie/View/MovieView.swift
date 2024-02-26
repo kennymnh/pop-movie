@@ -3,7 +3,6 @@ import SwiftUI
 struct MovieView: View {
     // MARK: PROPERTIES
     let movieId: Int
-    let genres = ["Science-fiction", "Animation"];
     
     @StateObject var movieModel = MovieModel()
     @State private var selectedActor: CastPerson? = nil
@@ -43,19 +42,26 @@ struct MovieView: View {
                     .opacity(0.4)
                     .padding(.top, 8)
                 
-                HStack {
-                    ForEach(movieModel.movie.genres) { genre in
-                        Text(genre.name)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 4)
-                            .background(.black.opacity(0.1))
-                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                VStack(alignment: .center, spacing: 8) {
+                    ForEach(0..<movieModel.movie.genres.count, id: \.self) { index in
+                        if index % 3 == 0 {
+                            HStack(spacing: 8) {
+                                ForEach(0..<min(3, movieModel.movie.genres.count - index), id: \.self) { innerIndex in
+                                    let genre = movieModel.movie.genres[index + innerIndex]
+                                    
+                                    Text(genre.name)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 4)
+                                        .background(.black.opacity(0.1))
+                                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                                }
+                            }
+                        }
                     }
                 }
-                .padding(.vertical)
+                .padding()
                 
-                // MARK: TODO: Genres listing
-                
+                // MARK: Rating
                 RatingComponentView(rating: movieModel.movie.voteAverage / 2, ratingMax: 5)
                     .padding(.top, 8)
                 

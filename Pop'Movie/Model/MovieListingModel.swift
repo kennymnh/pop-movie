@@ -1,6 +1,6 @@
 import Foundation
 
-class PartialMoviesModel: ObservableObject {
+class MovieListingModel: ObservableObject {
     @Published var partialMovies = [PartialMovie]()
     
     func fetchData(page: Int = 1, genre: Int = 0) async {

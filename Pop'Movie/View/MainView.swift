@@ -10,12 +10,12 @@ struct MainView: View {
         NavigationStack {
             TabView {
                 MovieByGenreView(genreId: 0, title: "Tendances").tabItem {
-                    Image(systemName: "movieclapper.fill")
-                    Text("Tendances")
+                    Image(systemName: "sparkles.tv")
+                    Text("Découverte")
                 }
                 
                 GenresView().tabItem {
-                    Image(systemName: "list.dash")
+                    Image(systemName: "square.grid.3x2.fill")
                     Text("Catégories")
                 }
                 

@@ -5,7 +5,7 @@ struct MovieByGenreView: View {
     let genreId: Int
     let title: String
     
-    @StateObject private var partialMovieModel = PartialMoviesModel()
+    @StateObject private var movieListingModel = MovieListingModel()
     @State private var firstLoad = true
     @State private var isLoadingMore = false
     @State private var currentPage = 1
@@ -14,6 +14,7 @@ struct MovieByGenreView: View {
     @State private var navigateToMovieView = false
     @State private var navigateToMovieId = 0
     
+    // MARK: BODY
     var body: some View {
         ScrollView {
             VStack {
@@ -25,7 +26,7 @@ struct MovieByGenreView: View {
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 30) {
                     
-                    ForEach(partialMovieModel.partialMovies) { partialMovie in
+                    ForEach(movieListingModel.partialMovies) { partialMovie in
                         VStack(alignment: .leading) {
                             AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500" + partialMovie.poster_path)) { image in
                                 image
@@ -54,11 +55,11 @@ struct MovieByGenreView: View {
                             selectedPartialMovie = partialMovie
                         }
                         .onAppear {
-                            if !isLoadingMore && partialMovie.id == partialMovieModel.partialMovies.last?.id {
+                            if !isLoadingMore && partialMovie.id == movieListingModel.partialMovies.last?.id {
                                 isLoadingMore = true
                                 
                                 Task {
-                                    await partialMovieModel.fetchData(page: currentPage + 1)
+                                    await movieListingModel.fetchData(page: currentPage + 1)
                                     currentPage += 1
                                     isLoadingMore = false
                                 }
@@ -74,7 +75,7 @@ struct MovieByGenreView: View {
         .ignoresSafeArea(edges: .top)
         .task {
             if (firstLoad) {
-                await partialMovieModel.fetchData(genre: genreId)
+                await movieListingModel.fetchData(genre: genreId)
                 firstLoad = false
             }
         }

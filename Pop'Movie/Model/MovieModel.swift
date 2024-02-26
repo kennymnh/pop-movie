@@ -93,12 +93,12 @@ class MovieModel: ObservableObject {
                         
                         var genres: [Genre] = []
                         
-                        //                        for genreData in genresData{
-                        //                            if let genreId = genreData["id"] as? Int,
-                        //                               let genreName = genreData["name"] as? String {
-                        //                                genres.append(Genre(id: genreId, name: genreName))
-                        //                            }
-                        //                        }
+                        for genreData in genresData{
+                            if let genreId = genreData["id"] as? Int,
+                               let genreName = genreData["name"] as? String {
+                                genres.append(Genre(id: genreId, name: genreName))
+                            }
+                        }
                         // TODO: countries
                         // TODO: prod companies
                         // TODO: spoken languages
