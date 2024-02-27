@@ -9,12 +9,6 @@ struct GenresView: View {
     // MARK: BODY
     var body: some View {
         VStack {
-//            Text("Catégories")
-//                .font(.largeTitle.bold())
-//                .frame(maxWidth: .infinity, alignment: .leading)
-//                .padding(.horizontal)
-//                .padding(.top, 40)
-            
             List {
                 HStack {
                     Text("Catégories")
