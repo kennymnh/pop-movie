@@ -1,6 +1,6 @@
 Membres :
 - Kenny YU TSUEN
-- Rémi PEDOFLOUS
+- Rémi PEDEFLOUS
 - Nino HERRAN
 
 B3 DEV - SUP DE VINCI
