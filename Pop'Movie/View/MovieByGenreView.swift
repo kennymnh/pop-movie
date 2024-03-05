@@ -54,8 +54,9 @@ struct MovieByGenreView: View {
                         .onTapGesture {
                             selectedPartialMovie = partialMovie
                         }
-                        // L'infinite scrolling
+                        // MARK: Infinite Scrolling
                         .onAppear {
+                            // Si c'est pas déjà en train de charger et que on est à la fin de la liste, on charge le reste
                             if !isLoadingMore && partialMovie.id == movieListingModel.partialMovies.last?.id {
                                 isLoadingMore = true
                                 
@@ -75,19 +76,21 @@ struct MovieByGenreView: View {
         }
         .ignoresSafeArea(edges: .top)
         .task {
+            // MARK: First load
             // Empêche un nouveau chargement lorsque l'on vient d'une autre view en passant par la TabView
             if (firstLoad) {
                 await movieListingModel.fetchData(genre: genreId)
                 firstLoad = false
             }
         }
+        // MARK: Bottom Sheet
         .sheet(item: $selectedPartialMovie) { partialMovie in
             MovieSheetView(partialMovie: partialMovie) { movieId in
                 selectedPartialMovie = nil
                 navigateToMovieId = movieId
                 navigateToMovieView = true
             }
-                .presentationDetents([.medium, .large])
+            .presentationDetents([.medium, .large])
         }
         .background {
             NavigationLink(destination: MovieView(movieId: navigateToMovieId), isActive: $navigateToMovieView) { EmptyView() }

@@ -18,6 +18,7 @@ struct GenresView: View {
                 }
                 
                 ForEach(genreModel.genres) { genre in
+                    // MARK: Category Nav Link
                     NavigationLink(destination: MovieByGenreView(genreId: genre.id, title: genre.name)) {
                         HStack {
                             Text(genre.name)
@@ -29,6 +30,7 @@ struct GenresView: View {
             }
             .navigationTitle("Catégories")
         }
+        // MARK: First load
         .task {
             if (firstLoad) {
                 await genreModel.fetchData()

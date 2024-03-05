@@ -99,12 +99,6 @@ class MovieModel: ObservableObject {
                                 genres.append(Genre(id: genreId, name: genreName))
                             }
                         }
-                        // TODO: countries
-                        // TODO: prod companies
-                        // TODO: spoken languages
-                        
-                        // let partialMovie = PartialMovie(id: id, title: title, overview: overview, release_date: releaseDate, poster_path: posterPath)
-                        // self.partialMovies.append(partialMovie)
                         
                         movie = Movie(id: id, title: title, overview: overview, runtime: runtime,  releaseDate: releaseDate, status: "", popularity: Float(popularity), voteAverage: Float(voteAverage), voteCount: voteCount, adult: adult, genres: genres, backdropPath: backdropPath, posterPath: posterPath, countries: [], productionCompanies: [], spokenLanguages: [], budget: budget)
                     }

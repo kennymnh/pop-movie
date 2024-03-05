@@ -10,6 +10,7 @@ extension Genre {
 }
 
 // Permet de séparer une array en plusieurs array de x éléments
+// Exemple : [a, b, c, d, e].chunked(2) -> [[a, b], [c, d], [e]]
 extension [Genre] {
     func chunked(into size: Int) -> [[Element]] {
         return stride(from: 0, to: count, by: size).map {

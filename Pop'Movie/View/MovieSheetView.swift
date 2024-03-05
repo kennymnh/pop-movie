@@ -59,7 +59,6 @@ struct MovieSheetView: View {
                 
                 // MARK: More info button
                 Button(action: {
-                    // Call the closure when the button is tapped
                     dismissAndShowMovieInfo(partialMovie.id)
                 }) {
                     Text("Plus d'informations")

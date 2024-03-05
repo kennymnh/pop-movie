@@ -3,8 +3,6 @@ import Foundation
 struct Movie: Codable, Identifiable {
     let id: Int
     
-    // MARK: MAIN INFORMATION
-    
     let title: String
     let overview: String
     let runtime: Int
@@ -20,8 +18,6 @@ struct Movie: Codable, Identifiable {
     
     let backdropPath: String
     let posterPath: String
-    
-    // MARK: MORE INFORMATION
     
     let countries: [String]
     let productionCompanies: [String]

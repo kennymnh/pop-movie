@@ -1,10 +1,14 @@
 import SwiftUI
 
 // Composant qui permet de faire des étoiles de notation
+//
 // Principe :
 // On calcule le nombre de d'étoiles pleines
-// ainsi que celles vides
+// ainsi que celles vides, puis on les rassemble
+//
+// Se fait en fonction d'une valeur et d'une valeur max
 struct RatingComponentView: View {
+    // MARK: PROPERTIES
     let rating: Float
     let ratingMax: Int
     
@@ -13,6 +17,7 @@ struct RatingComponentView: View {
         self.ratingMax = ratingMax
     }
     
+    // MARK: BODY
     var body: some View {
         HStack {
             ForEach(1...ratingMax, id: \.self) { index in
@@ -22,6 +27,7 @@ struct RatingComponentView: View {
         }
     }
     
+    // Calcule si à la position i l'étoile est pleine, semi, ou vide, et la retourne
     private func imageName(for index: Int) -> String {
         if Float(index) <= rating {
             return "star.fill"
@@ -32,6 +38,7 @@ struct RatingComponentView: View {
         }
     }
     
+    // Renvoie la couleur de l'étoile, si vide, elle est grise, sinon jaune
     private func starColor(for index: Int) -> Color {
         if Float(index - 1) <= rating {
             return .yellow
@@ -41,6 +48,7 @@ struct RatingComponentView: View {
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     RatingComponentView(rating: 2.5, ratingMax: 5)
 }

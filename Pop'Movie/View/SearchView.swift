@@ -2,10 +2,12 @@ import SwiftUI
 import Combine
 
 struct SearchView: View {
+    // MARK: PROPERTIES
     @StateObject private var movieSearchModel = MovieSearchModel()
     @State private var searchText: String = ""
     @State private var debounceTimer: AnyCancellable?
     
+    // MARK: BODY
     var body: some View {
         NavigationView {
             List(movieSearchModel.results) { movie in
@@ -39,14 +41,15 @@ struct SearchView: View {
             }
             .listStyle(.plain)
             .searchable(text: $searchText, prompt: "Saisissez un titre ou des mots-clés")
+            // MARK: Recherche
             .onChange(of: searchText) {
                 debounceTimer?.cancel() // Annule le timer précédent
                 debounceTimer = Just(searchText)
+                    // Timer de 600ms après la dernière touche pour lancer la recherche, évite le spam de l'API
                     .delay(for: .milliseconds(600), scheduler: RunLoop.main)
                     .sink { _ in
                         Task {
                             if !searchText.isEmpty && searchText.count > 3 {
-                                print("new searchText is \(searchText)")
                                 await movieSearchModel.fetchData(query: searchText)
                             } else {
                                 movieSearchModel.results.removeAll()
@@ -59,6 +62,7 @@ struct SearchView: View {
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     SearchView()
 }

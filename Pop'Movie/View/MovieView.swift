@@ -109,11 +109,13 @@ struct MovieView: View {
                 }
             }
         }
+        // MARK: Bottom Sheet
         .sheet(item: $selectedActor) { actor in
             ActorSheetView(actor: actor)
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.height(200)])
         }
+        // MARK: First load
         .task {
             await movieModel.fetchMovieData(movieId: movieId)
             await movieModel.fetchCastData(movieId: movieId)

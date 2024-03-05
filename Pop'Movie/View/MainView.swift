@@ -1,10 +1,6 @@
 import SwiftUI
 
 struct MainView: View {
-    // MARK: PROPERTIES
-    
-    
-    
     // MARK: BODY
     var body: some View {
         NavigationStack {
