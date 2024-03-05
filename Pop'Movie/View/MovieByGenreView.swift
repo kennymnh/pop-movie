@@ -54,6 +54,7 @@ struct MovieByGenreView: View {
                         .onTapGesture {
                             selectedPartialMovie = partialMovie
                         }
+                        // L'infinite scrolling
                         .onAppear {
                             if !isLoadingMore && partialMovie.id == movieListingModel.partialMovies.last?.id {
                                 isLoadingMore = true
@@ -74,6 +75,7 @@ struct MovieByGenreView: View {
         }
         .ignoresSafeArea(edges: .top)
         .task {
+            // Empêche un nouveau chargement lorsque l'on vient d'une autre view en passant par la TabView
             if (firstLoad) {
                 await movieListingModel.fetchData(genre: genreId)
                 firstLoad = false

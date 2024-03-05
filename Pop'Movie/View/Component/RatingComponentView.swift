@@ -1,5 +1,9 @@
 import SwiftUI
 
+// Composant qui permet de faire des étoiles de notation
+// Principe :
+// On calcule le nombre de d'étoiles pleines
+// ainsi que celles vides
 struct RatingComponentView: View {
     let rating: Float
     let ratingMax: Int

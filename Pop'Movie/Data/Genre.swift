@@ -9,6 +9,7 @@ extension Genre {
     static let previewGenre = Genre(id: 0, name: "")
 }
 
+// Permet de séparer une array en plusieurs array de x éléments
 extension [Genre] {
     func chunked(into size: Int) -> [[Element]] {
         return stride(from: 0, to: count, by: size).map {
